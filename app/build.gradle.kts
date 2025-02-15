@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
+
     alias(libs.plugins.ksp)
     alias(libs.plugins.serialization)
-
     alias(libs.plugins.compose.compiler)
 }
 
@@ -20,6 +20,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -31,7 +34,6 @@ android {
             )
         }
     }
-
 
     compileOptions {
         // Use Java 17 for the project
@@ -112,5 +114,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.truth)
 
-    androidTestApi(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
 }
