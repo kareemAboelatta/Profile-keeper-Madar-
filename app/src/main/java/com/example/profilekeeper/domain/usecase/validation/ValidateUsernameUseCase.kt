@@ -26,7 +26,11 @@ class ValidateUsernameUseCase @Inject constructor() : BaseValidationUseCase<Stri
 
         // 3) Check if username contains special characters => InvalidFormat
         //    (We consider anything non-letter a special character for demonstration.)
-        if (input.any { !it.isLetter() }) {
+        if (
+            input.any {
+                (it.isLetter() or it.isWhitespace()).not()
+            }
+        ) {
             return ValidationResult(
                 isSuccessful = false,
                 errorType = ValidationErrorType.InvalidFormat
